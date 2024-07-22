@@ -1,0 +1,4 @@
+navec~=0.10.0
+numpy~=1.24.4
+scikit-learn~=1.3.2
+faiss-cpu~=1.8.0.post1
