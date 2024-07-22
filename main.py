@@ -1,17 +1,22 @@
 # wget https://storage.yandexcloud.net/natasha-navec/packs/navec_hudlit_v1_12B_500K_300d_100q.tar
 # wget https://storage.yandexcloud.net/natasha-navec/packs/navec_news_v1_1B_250K_300d_100q.tar
 
-from wordMidpointFinder import WordMidpointFinder
+from wordVectorToolkit import WordVectorToolkit
 
 model_path = 'navec_hudlit_v1_12B_500K_300d_100q.tar'
-# model_path = 'navec_news_v1_1B_250K_300d_100q.tar'
-finder = WordMidpointFinder(model_path, log=True)
 
-counter = 1
-while True:
-    word1 = input()
-    word2 = input()
+finder = WordVectorToolkit(model_path, log=True)
 
-    closest_words = finder.find_words_closest_to_midpoint(word1, word2, top_k=20)
-    print(f"STEP №'{counter}': {closest_words}")
-    counter += 1
+# Finding the average word
+avg_words = finder.find_avg_words("эмблема", "храбрость", top_k=10)
+print(avg_words)
+
+
+# Finding the opposite words
+opposite_words = finder.find_opposite_words('сыр', top_k=10)
+print(opposite_words)
+
+
+# Finding an analogy
+analogy_result = finder.find_analogy('мужчина', 'король', 'женщина', top_k=10)
+print(analogy_result)
