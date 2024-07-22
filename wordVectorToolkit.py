@@ -33,7 +33,8 @@ class WordVectorToolkit:
             vectors = vectors[include_indices]
             words = words[include_indices]
 
-        vectors = vectors / np.linalg.norm(vectors, axis=1)[:, np.newaxis]
+        norms = np.linalg.norm(vectors, axis=1)
+        vectors = vectors / (norms[:, np.newaxis] + 1e-10)
 
         index = faiss.IndexFlatIP(vectors.shape[1])
         index.add(vectors)
