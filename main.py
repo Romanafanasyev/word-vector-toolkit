@@ -12,6 +12,6 @@ while True:
     word1 = input()
     word2 = input()
 
-    closest_words = finder.find_words_closest_to_midpoint(word1, word2, top_k=10)
+    closest_words = finder.find_words_closest_to_midpoint(word1, word2, top_k=20)
     print(f"STEP №'{counter}': {closest_words}")
     counter += 1

@@ -17,7 +17,10 @@ class WordMidpointFinder:
 
     def _compute_midpoint_vector(self, vector1: np.ndarray, vector2: np.ndarray) -> np.ndarray:
         """Compute the midpoint vector between two vectors."""
-        midpoint_vector = (vector1 + vector2) / 2
+        norm_vector1 = self._normalize_vector(vector1)
+        norm_vector2 = self._normalize_vector(vector2)
+
+        midpoint_vector = (norm_vector1 + norm_vector2) / 2
         return self._normalize_vector(midpoint_vector)
 
     def find_words_closest_to_midpoint(self, word1: str, word2: str, top_k: int = 10) -> List[Any]:
@@ -85,5 +88,14 @@ class WordMidpointFinder:
             vector = self.navec[word]
             similarity = cosine_similarity([midpoint_vector], [vector])[0][0]
             print(f"{OKBLUE}{word:<20} -> {OKGREEN}{similarity:.4f}{ENDC}")
+
+        print(f"{HEADER}-------------------------------{ENDC}")
+
+        similarity_word1_best = cosine_similarity([self.navec[word1]], [self.navec[words_to_log[2]]])[0][0]
+        similarity_word2_best = cosine_similarity([self.navec[word2]], [self.navec[words_to_log[2]]])[0][0]
+
+        print(f"{OKGREEN}Similarity with best guess ({OKBLUE}{words_to_log[2]}{OKGREEN}):{ENDC}")
+        print(f"{OKBLUE}{word1:<20} -> {OKGREEN}{similarity_word1_best:.4f}{ENDC}")
+        print(f"{OKBLUE}{word2:<20} -> {OKGREEN}{similarity_word2_best:.4f}{ENDC}")
 
         print(f"{HEADER}==============================={ENDC}")
