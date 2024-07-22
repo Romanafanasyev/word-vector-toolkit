@@ -1,0 +1,6 @@
+.idea
+.venv
+navec_hudlit_v1_12B_500K_300d_100q.tar
+navec_news_v1_1B_250K_300d_100q.tar
+*/__pycache__/
+__pycache__/
