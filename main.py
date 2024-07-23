@@ -13,7 +13,7 @@ print(avg_words)
 
 
 # Finding the opposite words
-opposite_words = finder.find_opposite_words('война', top_k=10)
+opposite_words = finder.find_opposite_words('айти', top_k=10)
 print(opposite_words)
 
 
